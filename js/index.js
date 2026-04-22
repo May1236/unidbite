@@ -647,6 +647,7 @@ const mascotPanel = document.querySelector(".mascot-panel");
 if (mascotVideo) {
   let mascotAutoplayAttempts = 0;
   let mascotAutoplayTimer = null;
+  const mascotFallbackSrc = "./assets/images/chef_pig.mp4";
 
   const playMascot = (restart = false) => {
     if (restart) mascotVideo.currentTime = 0;
@@ -709,6 +710,14 @@ if (mascotVideo) {
   mascotVideo.addEventListener("playing", () => {
     mascotVideo.dataset.autoplayReady = "true";
     clearMascotAutoplayTimer();
+  });
+
+  mascotVideo.addEventListener("error", () => {
+    const currentSource = mascotVideo.currentSrc || mascotVideo.getAttribute("src") || "";
+    if (currentSource.includes("chef_pig.mp4")) return;
+    mascotVideo.src = mascotFallbackSrc;
+    mascotVideo.load();
+    primeMascotAutoplay();
   });
 
   mascotVideo.addEventListener("ended", () => {
