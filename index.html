@@ -58,7 +58,9 @@
 
     <div class="listing-layout">
       <aside class="mascot-panel" aria-label="Mascot">
-        <video src="./assets/images/chef_pig.mp4" alt="Mascot" class="mascot-gif" autoplay muted loop playsinline preload="auto"></video>
+        <video id="mascotVideo" aria-label="UnidBite mascot" class="mascot-gif" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback>
+          <source src="./assets/images/chef_pig.mp4" type="video/mp4">
+        </video>
       </aside>
 
       <section class="restaurant-section">

@@ -640,6 +640,119 @@ async function initRestaurants() {
 
 initRestaurants();
 
+/* ===== Mascot Video Loop Guard ===== */
+const mascotVideo = document.getElementById("mascotVideo");
+const mascotPanel = document.querySelector(".mascot-panel");
+
+if (mascotVideo) {
+  let mascotAutoplayAttempts = 0;
+  let mascotAutoplayTimer = null;
+
+  const playMascot = (restart = false) => {
+    if (restart) mascotVideo.currentTime = 0;
+    const playPromise = mascotVideo.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {});
+    }
+  };
+
+  const clearMascotAutoplayTimer = () => {
+    if (mascotAutoplayTimer) {
+      clearTimeout(mascotAutoplayTimer);
+      mascotAutoplayTimer = null;
+    }
+  };
+
+  const scheduleMascotAutoplay = () => {
+    clearMascotAutoplayTimer();
+    if (!mascotVideo.paused || mascotAutoplayAttempts >= 12) return;
+
+    mascotAutoplayTimer = setTimeout(() => {
+      mascotAutoplayAttempts += 1;
+      playMascot();
+      scheduleMascotAutoplay();
+    }, 250);
+  };
+
+  const primeMascotAutoplay = () => {
+    mascotAutoplayAttempts = 0;
+    playMascot();
+    scheduleMascotAutoplay();
+  };
+
+  mascotVideo.muted = true;
+  mascotVideo.defaultMuted = true;
+  mascotVideo.loop = true;
+  mascotVideo.autoplay = true;
+  mascotVideo.playsInline = true;
+  mascotVideo.volume = 0;
+  mascotVideo.setAttribute("muted", "");
+  mascotVideo.setAttribute("autoplay", "");
+  mascotVideo.setAttribute("loop", "");
+  mascotVideo.setAttribute("playsinline", "");
+  mascotVideo.setAttribute("webkit-playsinline", "");
+  mascotVideo.controls = false;
+  mascotVideo.preload = "auto";
+
+  mascotVideo.addEventListener("loadedmetadata", () => {
+    playMascot();
+  });
+
+  mascotVideo.addEventListener("loadeddata", () => {
+    playMascot();
+  });
+
+  mascotVideo.addEventListener("canplay", () => {
+    if (mascotVideo.paused) playMascot();
+  });
+
+  mascotVideo.addEventListener("playing", () => {
+    mascotVideo.dataset.autoplayReady = "true";
+    clearMascotAutoplayTimer();
+  });
+
+  mascotVideo.addEventListener("ended", () => {
+    playMascot(true);
+  });
+
+  mascotVideo.addEventListener("pause", () => {
+    if (!mascotVideo.ended) return;
+    playMascot(true);
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) return;
+    if (mascotVideo.paused) {
+      playMascot();
+    }
+  });
+
+  window.addEventListener("pageshow", () => {
+    if (mascotVideo.paused) {
+      primeMascotAutoplay();
+    }
+  });
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", primeMascotAutoplay, { once: true });
+  } else {
+    primeMascotAutoplay();
+  }
+
+  const resumeMascotFromGesture = () => {
+    if (!mascotVideo.paused) return;
+    playMascot();
+  };
+
+  mascotVideo.addEventListener("click", resumeMascotFromGesture);
+  mascotVideo.addEventListener("touchstart", resumeMascotFromGesture, { passive: true });
+
+  if (mascotPanel) {
+    mascotPanel.addEventListener("click", resumeMascotFromGesture);
+    mascotPanel.addEventListener("touchstart", resumeMascotFromGesture, { passive: true });
+  }
+}
+
 /* ===== Help Modal Handler ===== */
 const helpWidgetBtn = document.getElementById("helpWidgetBtn");
 const helpModal = document.getElementById("helpModal");

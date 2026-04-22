@@ -73,6 +73,7 @@ header{
 }
 .search-wrap input{
   width: 100%;
+  height: 47px;
   padding: 10px 36px 10px 14px;
   border: 1px solid var(--primary);
   border-radius: 12px;
@@ -96,21 +97,22 @@ header{
   flex: 0 0 auto;
 }
 .radius-btn{
-  min-width: 100px;
-  padding: 10px 14px;
+  min-width: 124px;
+  height: 47px;
+  padding: 10px 13px;
   border: none;
   border-radius: 12px;
   background: var(--primary);
   color: white;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 15px;
   cursor: pointer;
   white-space: nowrap;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 8px center;
-  padding-right: 32px;
+  padding-right: 30px;
   line-height: 1.5;
   letter-spacing: 0.02em;
 }
@@ -118,12 +120,14 @@ header{
   position: absolute;
   top: calc(100% + 1px);
   right: 0;
-  min-width: 100%;
-  padding: 5px;
+  min-width: 124px;
+  padding: 4px;
   border-radius: 14px;
-  border: none;
-  background: var(--primary);
-  box-shadow: 0 10px 20px rgba(98, 16, 159, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(98, 16, 159, 0.72);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  box-shadow: 0 12px 28px rgba(98, 16, 159, 0.18);
   z-index: 30;
 }
 .radius-option{
@@ -131,15 +135,15 @@ header{
   display: block;
   border: none;
   border-radius: 9px;
-  background: var(--primary);
+  background: rgba(123, 33, 184, 0.74);
   color: #ffffff;
   font-family: var(--font-primary);
   font-weight: 700;
-  font-size: 17px;
+  font-size: 15px;
   letter-spacing: 0.02em;
   line-height: 1.5;
   text-align: left;
-  padding: 9px 12px;
+  padding: 8px 11px;
   cursor: pointer;
   transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
@@ -148,14 +152,14 @@ header{
 }
 .radius-option:hover,
 .radius-option[aria-selected="true"]{
-  background: #7b21b8;
+  background: rgba(123, 33, 184, 0.92);
   color: #ffffff;
 }
 .radius-option:hover{
-  background: #7b21b8;
+  background: rgba(123, 33, 184, 0.92);
 }
 .radius-option[aria-selected="true"]{
-  background: #7b21b8;
+  background: rgba(123, 33, 184, 0.94);
   box-shadow: none;
 }
 .radius-native{
@@ -233,7 +237,8 @@ header{
 
   .radius-btn {
     padding: 10px 12px;
-    min-width: 88px;
+    height: 47px;
+    min-width: 112px;
   }
 
   .home-btn {
