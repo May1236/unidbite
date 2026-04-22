@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UnidBite - Restaurant Details</title>
+  <link rel="stylesheet" href="./css/details.css" />
+</head>
+
+<body>
+  <header>
+    <div class="wrap top">
+      <div class="brand">
+        <a href="./index.html" class="brand-link">
+          <img src="./assets/images/unidbite_logo.png" alt="UnidBite logo" class="brand-logo" />
+        </a>
+      </div>
+
+      <div class="header-center">
+        <div class="search-wrap">
+          <input id="q" type="search" placeholder="Search..." />
+          <svg class="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </div>
+        <div class="radius-picker">
+          <button type="button" id="radiusToggle" class="radius-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="radiusMenu">
+            <span id="radiusLabel">0.5 Km</span>
+          </button>
+          <div id="radiusMenu" class="radius-menu" role="listbox" aria-labelledby="radiusToggle" hidden>
+            <button type="button" class="radius-option" data-value="0.5" role="option" aria-selected="true">0.5 Km</button>
+            <button type="button" class="radius-option" data-value="1" role="option" aria-selected="false">1 Km</button>
+          </div>
+          <select id="radius" class="radius-native" title="Distance" aria-hidden="true" tabindex="-1">
+            <option value="0.5" selected>0.5 Km</option>
+            <option value="1">1 Km</option>
+          </select>
+        </div>
+      </div>
+
+      <a href="./index.html" class="home-btn" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Hero banner image -->
+    <div class="hero-banner" id="heroBanner">
+      <div class="hero-img-wrap">
+        <img id="heroImg" src="" alt="" class="hero-img" style="display:none;" />
+        <div class="hero-placeholder" id="heroPlaceholder">🍽️</div>
+      </div>
+    </div>
+
+    <!-- Restaurant title row -->
+    <div class="title-row">
+      <a class="back-btn" href="./index.html" aria-label="Back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </a>
+      <div class="title-block">
+        <h1 id="name">Restaurant Name</h1>
+        <div class="meta-row">
+          <span class="meta-dist" id="metaDist">0.7 km · 18m (Earliest arrival)</span>
+          <div class="pill-row" id="pillRow"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Description + Address side by side -->
+    <div class="desc-address-grid">
+      <div class="desc-col">
+        <div class="desc" id="summary">Located at …</div>
+        <div class="info-links">
+          <button type="button" class="info-link" id="pricingInfoTrigger">
+            <span>Pricing Info</span>
+            <span class="info-dot">i</span>
+          </button>
+          <button type="button" class="info-link" id="ratingsInfoTrigger">
+            <span>Ratings and Reviews</span>
+            <span class="info-dot">i</span>
+          </button>
+        </div>
+
+        <!-- Reviews section -->
+        <div class="reviews-inline" id="reviewsInline">
+          <div class="rating-summary">
+            <div class="rating-score" id="ratingScore">—</div>
+            <div class="rating-stars" id="ratingStars"></div>
+            <div class="rating-count" id="reviewCount">—</div>
+          </div>
+          <div class="review-cards" id="reviewList"></div>
+        </div>
+      </div>
+
+      <div class="address-col">
+        <!-- Address Card -->
+        <div class="address-card">
+          <div class="mini-top">
+            <svg class="mini-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            <div>
+              <div class="mini-title">Address</div>
+              <div class="mini-text" id="addressText">—</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hours Card -->
+        <div class="hours-card">
+          <div class="hours-card-content">
+            <div class="hours-header mini-top">
+              <svg class="mini-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+              </svg>
+              <div class="mini-title" id="hoursTitle">Open Hours</div>
+            </div>
+            <div id="openText"></div>
+          </div>
+          <div class="hours-card-map" id="hoursCardMap">
+            <a id="mapPreviewLink" class="map-preview-link" href="#" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+              <div class="map-preview" id="mapPreview"></div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Overlay to dim background when info popups are shown -->
+        <div id="infoOverlay" class="overlay" style="display:none;"></div>
+        <!-- Pricing info cards (right side, hidden by default) -->
+        <div class="info-card" id="reviewsInfoCard" style="display:none;">
+          <div class="info-head">
+            <div class="info-title">How reviews work</div>
+            <div class="info-i">i</div>
+          </div>
+          <div class="info-body">
+            Reviews are based on feedback from SAIT students who have visited this restaurant. This helps reflect real student experiences and keeps content authentic.
+          </div>
+          <button class="info-btn" type="button" data-dismiss="#reviewsInfoCard">Got it</button>
+        </div>
+
+        <div class="info-card" id="pricesInfoCard" style="display:none;">
+          <div class="info-head">
+            <div class="info-title">How prices work</div>
+            <div class="info-i">i</div>
+          </div>
+          <div class="info-body">
+            Prices reflect typical menu ranges, not exact item prices. They are shown consistently across restaurants for fair comparison.
+          </div>
+          <button class="info-btn" type="button" data-dismiss="#pricesInfoCard">Got it</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Most Student Orders -->
+    <section class="menu-section" id="studentOrdersSection">
+      <h2 class="section-h2">Most Student Orders</h2>
+      <div class="menu-grid" id="studentOrdersList"></div>
+    </section>
+
+    <!-- Best Deals For Students -->
+    <section class="menu-section" id="bestDealsSection">
+      <h2 class="section-h2">Best Deals For Students</h2>
+      <div class="menu-list-single" id="bestDealsList"></div>
+    </section>
+
+    <!-- What's Available -->
+    <section class="menu-section" id="availableSection">
+      <h2 class="section-h2">What's Available</h2>
+      <div class="menu-grid" id="availableList"></div>
+    </section>
+
+    <div class="tiny" id="menuSource" style="padding:0 0 40px;"></div>
+  </main>
+
+      <!-- Floating Help Widget -->
+    <button type="button" class="help-widget-btn" id="helpWidgetBtn" aria-label="Open help panel">
+      <span class="help-btn-icon">💬</span><span class="help-btn-text"> Need Help?</span>
+    </button>
+
+    <!-- Help Modal Panel -->
+    <div class="help-modal" id="helpModal" style="display: none;">
+      <div class="help-modal-content">
+        <button type="button" class="help-modal-close" id="helpModalClose" aria-label="Close help panel">✕</button>
+        <h3>Report an Issue</h3>
+        <p>Found a broken interaction, missing information, or incorrect restaurant details? Let us know so our team can review and fix it.</p>
+        <textarea id="feedbackTextarea" class="feedback-textarea" placeholder="Describe the issue here..."></textarea>
+        <button type="button" class="feedback-btn" id="submitFeedbackBtn">Submit Feedback</button>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toastNotification" style="display: none;">
+      <div class="toast-content">
+        <strong class="toast-title">Feedback Received!</strong>
+        <p class="toast-message">We have received your report! Our team is already working on a fix to serve you a better experience. Thanks for helping us grow!</p>
+      </div>
+    </div>
+
+  <!-- manual-data.js provides a global fallback for file:// testing -->
+  <script src="./data/manual-data.js"></script>
+  <script src="./js/details.js"></script>
+</body>
+</html>

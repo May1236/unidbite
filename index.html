@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UnidBite - SAIT</title>
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+<body>
+  <header>
+    <div class="wrap top">
+      <div class="brand">
+        <a href="./index.html" class="brand-link">
+          <img src="./assets/images/unidbite_logo.png" alt="UnidBite logo" class="brand-logo" />
+        </a>
+      </div>
+
+      <div class="header-center">
+        <div class="search-wrap">
+          <input id="q" type="search" placeholder="Search..." />
+          <svg class="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </div>
+        <div class="radius-picker">
+          <button type="button" id="radiusToggle" class="radius-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="radiusMenu">
+            <span id="radiusLabel">0.5 Km</span>
+          </button>
+          <div id="radiusMenu" class="radius-menu" role="listbox" aria-labelledby="radiusToggle" hidden>
+            <button type="button" class="radius-option" data-value="0.5" role="option" aria-selected="true">0.5 Km</button>
+            <button type="button" class="radius-option" data-value="1" role="option" aria-selected="false">1 Km</button>
+          </div>
+          <select id="radius" class="radius-native" title="Distance" aria-hidden="true" tabindex="-1">
+            <option value="0.5" selected>0.5 Km</option>
+            <option value="1">1 Km</option>
+          </select>
+        </div>
+      </div>
+
+      <a href="./index.html" class="home-btn" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <img src="./assets/images/banner.png" alt="UnidBite banner" class="hero-banner-img" />
+    </section>
+
+    <div class="price-filters">
+      <button type="button" class="price-btn" data-max="5">Under $5</button>
+      <button type="button" class="price-btn" data-max="10">Under $10</button>
+      <button type="button" class="price-btn" data-max="20">Under $20</button>
+    </div>
+
+    <div class="listing-layout">
+      <aside class="mascot-panel" aria-label="Mascot">
+        <video src="./assets/images/chef_pig.mp4" alt="Mascot" class="mascot-gif" autoplay muted loop playsinline preload="auto"></video>
+      </aside>
+
+      <section class="restaurant-section">
+        <h2 class="section-title">Best deals near SAIT</h2>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
+          <div class="small" id="count" style="color:var(--muted);font-size:13px;"></div>
+          <button type="button" id="exportTemplate" class="export-btn" style="display:none;">Export manual-data template</button>
+        </div>
+        <div class="skeleton-container" id="skeletonContainer" style="display:none;">
+          <div class="skeleton-card">
+            <div class="skeleton-top">
+              <div class="skeleton-thumb"></div>
+              <div class="skeleton-info">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-title-2"></div>
+                <div class="skeleton-meta"></div>
+              </div>
+            </div>
+            <div class="skeleton-menu">
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line long"></div>
+            </div>
+            <div class="skeleton-badges">
+              <div class="skeleton-pill small"></div>
+              <div class="skeleton-pill medium"></div>
+            </div>
+            <div class="skeleton-footer">
+              <div class="skeleton-badges-footer">
+                <div class="skeleton-pill-2 small"></div>
+                <div class="skeleton-pill-2 small"></div>
+              </div>
+              <div class="skeleton-circle"></div>
+            </div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-top">
+              <div class="skeleton-thumb"></div>
+              <div class="skeleton-info">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-title-2"></div>
+                <div class="skeleton-meta"></div>
+              </div>
+            </div>
+            <div class="skeleton-menu">
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line long"></div>
+            </div>
+            <div class="skeleton-badges">
+              <div class="skeleton-pill small"></div>
+              <div class="skeleton-pill medium"></div>
+            </div>
+            <div class="skeleton-footer">
+              <div class="skeleton-badges-footer">
+                <div class="skeleton-pill-2 small"></div>
+                <div class="skeleton-pill-2 small"></div>
+              </div>
+              <div class="skeleton-circle"></div>
+            </div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-top">
+              <div class="skeleton-thumb"></div>
+              <div class="skeleton-info">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-title-2"></div>
+                <div class="skeleton-meta"></div>
+              </div>
+            </div>
+            <div class="skeleton-menu">
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line long"></div>
+            </div>
+            <div class="skeleton-badges">
+              <div class="skeleton-pill small"></div>
+              <div class="skeleton-pill medium"></div>
+            </div>
+            <div class="skeleton-footer">
+              <div class="skeleton-badges-footer">
+                <div class="skeleton-pill-2 small"></div>
+                <div class="skeleton-pill-2 small"></div>
+              </div>
+              <div class="skeleton-circle"></div>
+            </div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-top">
+              <div class="skeleton-thumb"></div>
+              <div class="skeleton-info">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-title-2"></div>
+                <div class="skeleton-meta"></div>
+              </div>
+            </div>
+            <div class="skeleton-menu">
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line long"></div>
+            </div>
+            <div class="skeleton-badges">
+              <div class="skeleton-pill small"></div>
+              <div class="skeleton-pill medium"></div>
+            </div>
+            <div class="skeleton-footer">
+              <div class="skeleton-badges-footer">
+                <div class="skeleton-pill-2 small"></div>
+                <div class="skeleton-pill-2 small"></div>
+              </div>
+              <div class="skeleton-circle"></div>
+            </div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-top">
+              <div class="skeleton-thumb"></div>
+              <div class="skeleton-info">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-title-2"></div>
+                <div class="skeleton-meta"></div>
+              </div>
+            </div>
+            <div class="skeleton-menu">
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line long"></div>
+            </div>
+            <div class="skeleton-badges">
+              <div class="skeleton-pill small"></div>
+              <div class="skeleton-pill medium"></div>
+            </div>
+            <div class="skeleton-footer">
+              <div class="skeleton-badges-footer">
+                <div class="skeleton-pill-2 small"></div>
+                <div class="skeleton-pill-2 small"></div>
+              </div>
+              <div class="skeleton-circle"></div>
+            </div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-top">
+              <div class="skeleton-thumb"></div>
+              <div class="skeleton-info">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-title-2"></div>
+                <div class="skeleton-meta"></div>
+              </div>
+            </div>
+            <div class="skeleton-menu">
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line long"></div>
+            </div>
+            <div class="skeleton-badges">
+              <div class="skeleton-pill small"></div>
+              <div class="skeleton-pill medium"></div>
+            </div>
+            <div class="skeleton-footer">
+              <div class="skeleton-badges-footer">
+                <div class="skeleton-pill-2 small"></div>
+                <div class="skeleton-pill-2 small"></div>
+              </div>
+              <div class="skeleton-circle"></div>
+            </div>
+          </div>
+        </div>
+        <div class="restaurant-grid" id="list"></div>
+        <div id="empty" class="empty" style="display:none;"></div>
+      </section>
+
+    </div>
+
+    <!-- Floating Help Widget -->
+    <button type="button" class="help-widget-btn" id="helpWidgetBtn" aria-label="Open help panel">
+      <span class="help-btn-icon">💬</span><span class="help-btn-text"> Need Help?</span>
+    </button>
+
+    <!-- Help Modal Panel -->
+    <div class="help-modal" id="helpModal" style="display: none;">
+      <div class="help-modal-content">
+        <button type="button" class="help-modal-close" id="helpModalClose" aria-label="Close help panel">✕</button>
+        <h3>Report an Issue</h3>
+        <p>Found a broken interaction, missing information, or incorrect restaurant details? Let us know so our team can review and fix it.</p>
+        <textarea id="feedbackTextarea" class="feedback-textarea" placeholder="Describe the issue here..."></textarea>
+        <button type="button" class="feedback-btn" id="submitFeedbackBtn">Submit Feedback</button>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toastNotification" style="display: none;">
+      <div class="toast-content">
+        <strong class="toast-title">Feedback Received!</strong>
+        <p class="toast-message">We have received your report! Our team is already working on a fix to serve you a better experience. Thanks for helping us grow!</p>
+      </div>
+    </div>
+
+    <footer class="footer-note">
+      UnidBite - Helping students find affordable food near campus
+    </footer>
+  </main>
+
+  <!-- fallback data for offline -->
+  <script src="./data/manual-data.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+</html>
